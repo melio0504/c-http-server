@@ -25,6 +25,11 @@ static int send_all(int socket_fd, const char *response,
       return -1;
     }
 
+    if (result == 0) {
+      errno = EPIPE;
+      return -1;
+    }
+
     bytes_sent += (size_t)result;
   }
 
