@@ -66,4 +66,11 @@ int main(int argc, char **argv) {
   address.sin_addr.s_addr = htonl(INADDR_ANY);
   address.sin_port = htons(port);
 
+  /* bind assigns the requested local port to this listening socket. */
+  if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
+    perror("bind");
+    close(server_fd);
+    return EXIT_FAILURE;
+  }
+
 }
