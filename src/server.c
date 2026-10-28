@@ -73,4 +73,10 @@ int main(int argc, char **argv) {
     return EXIT_FAILURE;
   }
 
+  if (listen(server_fd, 16) < 0) {
+    perror("listen");
+    close(server_fd);
+    return EXIT_FAILURE;
+  }
+
 }
