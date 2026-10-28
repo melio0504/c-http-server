@@ -7,6 +7,29 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+static int send_all(int socket_fd, const char *response,
+                    size_t response_length) {
+  size_t bytes_sent = 0;
+
+  // send can write only part of the response, so we keep going until
+  // it is complete
+  while (bytes_sent < response_length) {
+    ssize_t result =
+        send(socket_fd, response + bytes_sent, response_length - bytes_sent, 0);
+
+    if (result < 0) {
+      if (errno == EINTR) {
+        continue;
+      }
+
+      return -1;
+    }
+
+    bytes_sent += (size_t)result;
+  }
+
+  return 0;
+}
 
 static int parse_port(const char *text, unsigned short *port) {
   char *end = NULL;
