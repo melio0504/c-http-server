@@ -54,4 +54,11 @@ int main(int argc, char **argv) {
     return EXIT_FAILURE;
   }
 
+  if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &reuse_address,
+                 sizeof(reuse_address)) < 0) {
+    perror("setsockopt");
+    close(server_fd);
+    return EXIT_FAILURE;
+  }
+
 }
