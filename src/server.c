@@ -1,6 +1,8 @@
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
 
 static int parse_port(const char *text, unsigned short *port) {
@@ -25,4 +27,11 @@ int main(int argc, char **argv) {
       "connection: close\r\n"
       "\r\n"
       "<!doctype html><html><body>hello</body></html>";
+  unsigned short port;
+
+  if (argc != 2 || parse_port(argv[1], &port) != 0) {
+    fprintf(stderr, "usage: %s <port from 1 to 65535>\n", argv[0]);
+    return EXIT_FAILURE;
+  }
+
 }
