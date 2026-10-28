@@ -246,3 +246,44 @@ int main(int argc, char **argv) {
     fflush(stdout);
   }
 }
+
+// TODO:
+//
+// 1. Parse HTTP Requests
+//
+// - Validate the request format and HTTP method.
+// - Return 400 Bad Request for improperly formatted requests.
+// - Return 501 Not Implemented for valid requests using other methods
+//
+// 2. Serve Files
+//
+// - Parse the requested URL path from valid GET requests.
+// - Map the URL path to a file inside the root directory.
+// - Serve index.html when the requested path is `/`.
+// - Return 404 Not Found when the requested file does not exist.
+// - Support both text files and binary files, including images.
+//
+// 3. Support Directories and Nested Paths
+//
+// - Create multiple subdirectories inside the root directory.
+// - Add dummy HTML files and `index.html` files to subdirectories.
+// - Create several levels of nested directories.
+// - Update path parsing to handle nested folder paths correctly.
+//
+// 4. Handle File Permissions
+//
+// - Modify permissions on selected files and directories to deny read or
+// access permissions.
+// - Detect when the server cannot access or read a requested resource.
+// - Return 403 Forbidden when access is denied.
+//
+// 5. Improve URI and Path Security
+//
+// - Review URI syntax and identify characters requiring special handling.
+// - Parse and normalize URL paths safely.
+// - Handle URL-encoded characters appropriately.
+// - Ignore query strings (`?`) when resolving the requested file.
+// - Ignore fragments (`#`) when resolving the requested file.
+// - Prevent directory traversal attacks using `..`.
+// - Ensure the resolved file path remains within the configured root directory.
+// - Handle malformed or suspicious paths safely.
