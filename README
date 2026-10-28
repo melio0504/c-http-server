@@ -5,3 +5,8 @@ Teodoro (2026)
 This repository documents my journey of learning how HTTP works
 and implementing its core concepts in the C programming language.
 
+References:
+- The C Programming Language. 2nd Edition Book by Brian Kernighan and Dennis Ritchie
+- https://www.rfc-editor.org/info/rfc1945/
+- https://developer.mozilla.org/en-US/docs/Web/HTTP
+- https://beej.us/guide/bgnet/html/index-wide.html
