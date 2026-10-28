@@ -1,6 +1,20 @@
+#include <errno.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 
+static int parse_port(const char *text, unsigned short *port) {
+  char *end = NULL;
+  long value;
+
+  errno = 0;
+  value = strtol(text, &end, 10);
+
+  if (errno != 0 || end == text || *end != '\0' || value < 1 || value > 65535) {
+    return -1;
+  }
+
+  *port = (unsigned short)value;
   return 0;
 }
 int main(int argc, char **argv) {
