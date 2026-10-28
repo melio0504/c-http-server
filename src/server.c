@@ -48,4 +48,10 @@ int main(int argc, char **argv) {
     return EXIT_FAILURE;
   }
 
+  server_fd = socket(AF_INET, SOCK_STREAM, 0);
+  if (server_fd < 0) {
+    perror("socket");
+    return EXIT_FAILURE;
+  }
+
 }
