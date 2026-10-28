@@ -4,7 +4,7 @@
 # We have ":=", "=", "?=", and "+="
 # So what I am using right now is ":=" which is evaluated only once
 # at the initial occurance.
-CC 			:= gcc
+CC 		:= gcc
 CFLAGS 	:= -Wall -Wextra -Werror
 SRC_DIR := src
 BIN_DIR := bin
@@ -19,10 +19,10 @@ SOURCES := $(SRC_DIR)/server.c
 all: $(TARGET)
 
 setup:
-				mkdir -p $(BIN_DIR)
+		mkdir -p $(BIN_DIR)
 
 $(TARGET): $(SOURCES) | setup 
-				$(CC) $(CFLAGS) -o $@ $^
+		$(CC) $(CFLAGS) -o $@ $^
 
 clean: 
-				rm -f $(TARGET)
+		rm -f $(TARGET)
