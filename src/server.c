@@ -79,4 +79,27 @@ int main(int argc, char **argv) {
     return EXIT_FAILURE;
   }
 
+  for (;;) {
+    int client_fd;
+
+    /* accept blocks until a client connects and returns its connected socket.
+     */
+    client_fd = accept(server_fd, NULL, NULL);
+    if (client_fd < 0) {
+      if (errno == EINTR) {
+        continue;
+      }
+
+      perror("accept");
+      close(server_fd);
+      return EXIT_FAILURE;
+    }
+
+    if (send_all(client_fd, response, sizeof(response) - 1) < 0) {
+      perror("send");
+    }
+
+    /* closing the client socket finishes this HTTP/1.0 response. */
+    close(client_fd);
+  }
 }
